@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "YourMediaApp_18"
+rootProject.name = "TViewing"
 include(":app")

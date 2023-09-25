@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.yourmediaapp_18"
+    namespace = "com.example.tviewing"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.example.yourmediaapp_18"
+        applicationId = "com.example.tviewing"
         minSdk = 31
         targetSdk = 33
         versionCode = 1

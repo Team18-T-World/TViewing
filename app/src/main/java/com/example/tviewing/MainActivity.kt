@@ -1,4 +1,4 @@
-package com.example.yourmediaapp_18
+package com.example.tviewing
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
