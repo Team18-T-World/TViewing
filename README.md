@@ -44,7 +44,7 @@ Youtube API를 활용하여 좋아하는 동영상을 저장할 수 있는 앱
 </table>
 
 1. 이슬비
-   - SearchFragment
+   - VideoDetailFragment
 2. 윤승재
    - HomeFragment
 3. 양윤혁
