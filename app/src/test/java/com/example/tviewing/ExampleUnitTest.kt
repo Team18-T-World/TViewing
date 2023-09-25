@@ -1,4 +1,4 @@
-package com.example.yourmediaapp_18
+package com.example.tviewing
 
 import org.junit.Test
 
