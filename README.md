@@ -35,10 +35,10 @@ Youtube API를 활용하여 좋아하는 동영상을 저장할 수 있는 앱
 <table>
   <tbody>
     <tr>
-      <td align="center"><a href="https://github.com/Seulbi-Lee-project"><img src="https://avatars.githubusercontent.com/u/138438363?v=4" width="100px;"><br /><sub><b>FE 팀장 : 이슬비</b></sub></a><br /></a></td>
-      <td align="center"><a href="https://github.com/LordOfWins"><img src="https://avatars.githubusercontent.com/u/106107068?v=4" width="100px;"><br /><sub><b>FE 팀원 : 윤승재</b></sub></a><br /></a></td>
-      <td align="center"><a href="https://github.com/yangyunhyeok?tab=repositories"><img src="https://avatars.githubusercontent.com/u/139089275?v=4" width="100px;"><br /><sub><b>FE 팀원 : 양윤혁</b></sub></a><br /></a></td>
-      <td align="center"><a href="https://github.com/PMETNT"><img src="https://avatars.githubusercontent.com/u/139109345?v=4" width="100px;"><br /><sub><b>FE 팀원 : 전지성</b></sub></a><br /></a></td>
+      <td align="center"><a href="https://github.com/Seulbi-Lee-project"><img src="https://avatars.githubusercontent.com/u/138438363?v=4" width="100px;"><br /><sub><b>팀장 : 이슬비</b></sub></a><br /></a></td>
+      <td align="center"><a href="https://github.com/LordOfWins"><img src="https://avatars.githubusercontent.com/u/106107068?v=4" width="100px;"><br /><sub><b>팀원 : 윤승재</b></sub></a><br /></a></td>
+      <td align="center"><a href="https://github.com/yangyunhyeok?tab=repositories"><img src="https://avatars.githubusercontent.com/u/139089275?v=4" width="100px;"><br /><sub><b>팀원 : 양윤혁</b></sub></a><br /></a></td>
+      <td align="center"><a href="https://github.com/PMETNT"><img src="https://avatars.githubusercontent.com/u/139109345?v=4" width="100px;"><br /><sub><b>팀원 : 전지성</b></sub></a><br /></a></td>
      <tr/>
   </tbody>
 </table>
