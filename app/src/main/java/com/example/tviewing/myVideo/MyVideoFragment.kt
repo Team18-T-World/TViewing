@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.yourmediaapp_18.R
-import com.example.yourmediaapp_18.databinding.FragmentMyVideoBinding
+import com.example.tviewing.databinding.FragmentMyVideoBinding
+
 
 
 
