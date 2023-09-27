@@ -84,6 +84,7 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
                     android:orientation="vertical">
 
                     <ImageButton
@@ -100,7 +101,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="알림"
+                        android:text="구독"
                         android:textColor="#DCDDDC" />
                 </LinearLayout>
 
@@ -123,7 +124,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="찜"
+                        android:text="공유"
                         android:textColor="#DCDDDC" />
                 </LinearLayout>
             </LinearLayout>
