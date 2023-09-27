@@ -49,8 +49,9 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     implementation("de.hdodenhof:circleimageview:3.1.0")  // 원형 이미지뷰
-    implementation("androidx.viewpager2:viewpager2:1.0.0") //viewpager2
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")   // Retrofit
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0") // Converter ( JSON 타입 결과를 객체로 매핑 )
-    implementation("com.squareup.okhttp3:logging-interceptor:4.10.0") // okhttp3
+
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
+    implementation("com.github.bumptech.glide:glide:4.12.0")
 }
