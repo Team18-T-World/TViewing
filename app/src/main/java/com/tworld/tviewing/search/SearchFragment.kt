@@ -3,7 +3,6 @@ package com.tworld.tviewing.search
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -54,8 +53,9 @@ class SearchFragment : Fragment() {
         adaptor.notifyDataSetChanged()
         adaptor.itemClickListener = object : SearchAdaptor.OnItemClickListener {
             override fun onItemClick(position: Int) {
-                Log.d("onitem", "onitemclick 프래그먼트 $position")
                 val intent = Intent(context, DetailActivity::class.java)
+                intent.putExtra("url", datalist[position].url)
+                intent.putExtra("title", datalist[position].title)
                 context?.startActivity(intent)
             }
         }
@@ -74,7 +74,7 @@ class SearchFragment : Fragment() {
     private fun fetchImageResults(keyWord: String) {
         val service = RetrofitApi.youtubeService
         service.getSearchService(
-            apiKey = "AIzaSyB-hi0gpZmfY5A0fv_wOVf_q6l1L0N5Jz4", q = keyWord
+            apiKey = "your-api-key", q = keyWord
         ).enqueue(object : retrofit2.Callback<SearchResponse> {
             override fun onResponse(
                 call: Call<SearchResponse>, response: Response<SearchResponse>
