@@ -3,6 +3,7 @@ package com.tworld.tviewing.search
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -56,6 +57,14 @@ class SearchFragment : Fragment() {
                 val intent = Intent(context, DetailActivity::class.java)
                 intent.putExtra("url", datalist[position].url)
                 intent.putExtra("title", datalist[position].title)
+                intent.putExtra("description", datalist[position].description)
+                var url = datalist[position].url
+                var title = datalist[position].title
+                var description = datalist[position].description
+
+                Log.d("test", "사진 $url")
+                Log.d("test", "타이틀  $title")
+                Log.d("test", "설명 $description")
                 context?.startActivity(intent)
             }
         }
@@ -74,7 +83,7 @@ class SearchFragment : Fragment() {
     private fun fetchImageResults(keyWord: String) {
         val service = RetrofitApi.youtubeService
         service.getSearchService(
-            apiKey = "your-api-key", q = keyWord
+            apiKey = "AIzaSyDOAvCFlKkTOzmxqDc7HeBXLYAmg9HLvTY", q = keyWord
         ).enqueue(object : retrofit2.Callback<SearchResponse> {
             override fun onResponse(
                 call: Call<SearchResponse>, response: Response<SearchResponse>
@@ -84,7 +93,8 @@ class SearchFragment : Fragment() {
                         response.body()!!.items.forEach { items ->
                             val title = items.snippet.title
                             val url = items.snippet.thumbnails.medium.url
-                            datalist.add(SearchResult(title, url))
+                            val description = items.snippet.description
+                            datalist.add(SearchResult(title, url, description))
                         }
                     } else {
                         Toast.makeText(activity, "결과 값이 없습니다", Toast.LENGTH_SHORT).show()
