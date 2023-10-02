@@ -2,6 +2,7 @@ package com.tworld.tviewing
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.example.tviewing.R
 import com.example.tviewing.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
@@ -24,11 +25,19 @@ class MainActivity : AppCompatActivity() {
         TabLayoutMediator(
             tabLayout, viewPager
         ) { tab, position ->
-            when(position){
+            when (position) {
                 0 -> tab.setIcon(R.drawable.ic_home)
                 1 -> tab.setIcon(R.drawable.ic_search)
                 2 -> tab.setIcon(R.drawable.ic_user)
             }
         }.attach()
     }
+
+    fun setFragment(Fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.frame_layout, Fragment)
+            .commit()
+    }
+
+
 }

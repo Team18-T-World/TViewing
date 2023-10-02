@@ -1,10 +1,9 @@
 package com.tworld.tviewing.search
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.tviewing.databinding.SearchItemBinding
@@ -14,20 +13,17 @@ class SearchAdaptor(private val mContext: Context) : RecyclerView.Adapter<Search
 
     var datalist = ArrayList<SearchResult>()
 
-    inner class Holder(val binding: SearchItemBinding) :
-        RecyclerView.ViewHolder(binding.root), View.OnClickListener {
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
+
+    var itemClickListener: OnItemClickListener? = null
+
+    inner
+
+    class Holder(val binding: SearchItemBinding) : RecyclerView.ViewHolder(binding.root) {
         val image = binding.imgThumbnail
         val title = binding.textTitle
-        val layout: ConstraintLayout = binding.searchItem
-
-        init {
-            image.setOnClickListener(this)
-            layout.setOnClickListener(this)
-        }
-
-        override fun onClick(v: View?) {
-
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -37,6 +33,12 @@ class SearchAdaptor(private val mContext: Context) : RecyclerView.Adapter<Search
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val data = datalist[position]
+        Log.d("onitem", "onBindViewHolder $position")
+
+        holder.itemView.setOnClickListener {
+            itemClickListener?.onItemClick(position)
+            Log.d("onitem", "setOnClickListener $position")
+        }
 
         Glide.with(mContext) // mContext??
             .load(data.url) // 불러올 이미지 url
