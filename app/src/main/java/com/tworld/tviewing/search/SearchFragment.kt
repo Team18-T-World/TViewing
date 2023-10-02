@@ -1,14 +1,18 @@
 package com.tworld.tviewing.search
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.tviewing.databinding.FragmentSearchBinding
 import com.tworld.tviewing.search.data.SearchResponse
+import com.tworld.tviewing.videoDetail.DetailActivity
 import com.tworld.tviewing.youtube.RetrofitApi
 import retrofit2.Call
 import retrofit2.Response
@@ -29,13 +33,14 @@ class SearchFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
 
         setupView()
         setupListeners()
+
+
         return binding.root
     }
 
@@ -47,6 +52,13 @@ class SearchFragment : Fragment() {
         binding.search.itemAnimator = null
         adaptor.datalist = datalist
         adaptor.notifyDataSetChanged()
+        adaptor.itemClickListener = object : SearchAdaptor.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                Log.d("onitem", "onitemclick 프래그먼트 $position")
+                val intent = Intent(context, DetailActivity::class.java)
+                context?.startActivity(intent)
+            }
+        }
     }
 
     private fun setupListeners() {
@@ -62,12 +74,10 @@ class SearchFragment : Fragment() {
     private fun fetchImageResults(keyWord: String) {
         val service = RetrofitApi.youtubeService
         service.getSearchService(
-            apiKey = " API 값 넣기 ",
-            q = keyWord
+            apiKey = "AIzaSyB-hi0gpZmfY5A0fv_wOVf_q6l1L0N5Jz4", q = keyWord
         ).enqueue(object : retrofit2.Callback<SearchResponse> {
             override fun onResponse(
-                call: Call<SearchResponse>,
-                response: Response<SearchResponse>
+                call: Call<SearchResponse>, response: Response<SearchResponse>
             ) {
                 response.body()?.pageInfo?.let { pageInfo ->
                     if (pageInfo.resultsPerPage.toInt() > 0) {
@@ -76,6 +86,8 @@ class SearchFragment : Fragment() {
                             val url = items.snippet.thumbnails.medium.url
                             datalist.add(SearchResult(title, url))
                         }
+                    } else {
+                        Toast.makeText(activity, "결과 값이 없습니다", Toast.LENGTH_SHORT).show()
                     }
 
                 }
@@ -84,7 +96,6 @@ class SearchFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
-
             }
 
         })

@@ -15,6 +15,9 @@
         android:theme="@style/Theme.TViewing"
         tools:targetApi="31">
         <activity
+            android:name="com.tworld.tviewing.videoDetail.DetailActivity"
+            android:exported="false" />
+        <activity
             android:name="com.tworld.tviewing.MainActivity"
             android:exported="true">
             <intent-filter>
