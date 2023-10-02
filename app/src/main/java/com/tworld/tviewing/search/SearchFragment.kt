@@ -3,7 +3,6 @@ package com.tworld.tviewing.search
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -54,7 +53,6 @@ class SearchFragment : Fragment() {
         adaptor.notifyDataSetChanged()
         adaptor.itemClickListener = object : SearchAdaptor.OnItemClickListener {
             override fun onItemClick(position: Int) {
-                Log.d("onitem", "onitemclick 프래그먼트 $position")
                 val intent = Intent(context, DetailActivity::class.java)
                 intent.putExtra("url", datalist[position].url)
                 intent.putExtra("title", datalist[position].title)
