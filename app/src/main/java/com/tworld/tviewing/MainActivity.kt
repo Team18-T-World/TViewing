@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
         val tabLayout = binding.mainTabLayout
         val viewPager = binding.frameLayout
-
+        viewPager.isUserInputEnabled = false
         // adapter 준비 및 연결
         val adapter = TabPagerAdapter(this)
         viewPager.adapter = adapter
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         TabLayoutMediator(
             tabLayout, viewPager
         ) { tab, position ->
-            when(position){
+            when (position) {
                 0 -> tab.setIcon(R.drawable.ic_home)
                 1 -> tab.setIcon(R.drawable.ic_search)
                 2 -> tab.setIcon(R.drawable.ic_user)
