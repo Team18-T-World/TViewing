@@ -49,9 +49,11 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     implementation("de.hdodenhof:circleimageview:3.1.0")  // 원형 이미지뷰
-
+    implementation("com.github.bumptech.glide:glide:4.16.0") // Glide
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
-    implementation("com.github.bumptech.glide:glide:4.12.0")
+    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0") //youtubeplayer
+    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender:0.28")
+
 }

@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment
 import com.example.tviewing.R
 import com.example.tviewing.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import com.tworld.tviewing.data.MyVideoItems
 
 class MainActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    var likedItems: ArrayList<MyVideoItems> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,5 +41,10 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
+    fun addLikedItem(item: MyVideoItems) {
+        if (!likedItems.contains(item)) {
+            likedItems.add(item)
+        }
+    }
 
 }
