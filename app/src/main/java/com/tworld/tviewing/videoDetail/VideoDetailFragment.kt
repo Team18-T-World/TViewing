@@ -68,6 +68,15 @@ class VideoDetailFragment : Fragment() {
             Toast.makeText(requireContext(), "click", Toast.LENGTH_SHORT).show()
             val fragmentManager = requireActivity().supportFragmentManager
             val mFragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+            mFragmentTransaction.run {
+                setCustomAnimations(
+                    R.anim.transition_fade_in,
+                    R.anim.transition_fade_out,
+                    R.anim.transition_fade_in,
+                    R.anim.transition_fade_out
+                )
+                addToBackStack(fragmentManager.backStackEntryCount.toString())
+            }
             mFragmentTransaction.remove(this)
             mFragmentTransaction.commit()
             this.onDestroy()
