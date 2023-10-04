@@ -54,14 +54,7 @@
                     android:layout_weight="8"
                     android:text="Title"
                     android:textColor="#DCDDDC"
-                    android:textSize="30sp" />
-
-                <TextView
-                    android:id="@+id/detail_hits"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="조회수 : 12,345"
-                    android:textColor="#DCDDDC" />
+                    android:textSize="30sp"/>
             </LinearLayout>
 
 
