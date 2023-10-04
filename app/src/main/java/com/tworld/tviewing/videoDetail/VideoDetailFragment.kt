@@ -40,7 +40,6 @@ class VideoDetailFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            database = MyPageDatabase.getInstance(requireContext())!!
             val id = it.getString("id") ?: ""
             val title = it.getString("title") ?: ""
             val thumbnail = it.getString("thumbnail") ?: ""
@@ -77,8 +76,7 @@ class VideoDetailFragment : Fragment() {
             }
 
             var isLike = false
-            var myVideo = database.contactDao().getAll()
-            var listSize = myVideo.value?.size?:0
+            database = MyPageDatabase.getInstance(requireContext())!!
 
             binding.detailIsLike.setOnClickListener {
                 if(isLike){
@@ -86,7 +84,7 @@ class VideoDetailFragment : Fragment() {
                     isLike = false
                     lifecycleScope.launch() {
                         withContext(Dispatchers.IO) {
-                            //database.contactDao().delete()
+                            database.contactDao().delete(MyPageEntity(id, title, content, thumbnail))
                         }
                     }
                 }else{
@@ -95,7 +93,7 @@ class VideoDetailFragment : Fragment() {
                     //(mContext as MainActivity).addLikedItem(videoItems)
                     lifecycleScope.launch() {
                         withContext(Dispatchers.IO) {
-                            database.contactDao().update(MyPageEntity((listSize + 1).toLong(), thumbnail, title))
+                            database.contactDao().insert(MyPageEntity(id, title, content, thumbnail))
                         }
                     }
                 }

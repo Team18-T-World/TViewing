@@ -6,17 +6,13 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "mypage")
 data class MyPageEntity(
-    @PrimaryKey(autoGenerate = true)
-    var id: Long? = null,
-
-    @ColumnInfo(name = "thumbnail")
-    var thumbnail_text: String,
-
-    @ColumnInfo(name = "title")
-    var title_text: String
+    @ColumnInfo(name = "id") val videoId: String,
+    @ColumnInfo(name = "title") var title: String,
+    @ColumnInfo(name = "content") var content: String,
+    @ColumnInfo(name = "thumbnail") val thumbnail: String
 ) {
-    constructor() : this(id = null, "", "")
-
+    constructor() : this("", "", "", "")
+    @PrimaryKey(autoGenerate = true) var primaryKey = 0
 }
 
 
