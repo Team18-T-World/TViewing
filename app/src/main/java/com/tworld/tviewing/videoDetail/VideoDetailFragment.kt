@@ -9,6 +9,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.lifecycleScope
 import com.example.tviewing.R
 import com.example.tviewing.databinding.FragmentVideoDetailBinding
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
@@ -18,6 +19,9 @@ import com.tworld.tviewing.MainActivity
 import com.tworld.tviewing.data.MyVideoItems
 import com.tworld.tviewing.myVideo.MyPageDatabase
 import com.tworld.tviewing.myVideo.MyPageEntity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class VideoDetailFragment : Fragment() {
 
@@ -37,8 +41,9 @@ class VideoDetailFragment : Fragment() {
             database = MyPageDatabase.getInstance(requireContext())!!
             val id = it.getString("id") ?: ""
             val title = it.getString("title") ?: ""
-            val thumbnail = it.getString("thumbnail")?:""
-            videoItems = MyVideoItems(id, "", title, false)
+            val thumbnail = it.getString("thumbnail") ?: ""
+            val content = it.getString("content") ?: ""
+            videoItems = MyVideoItems(id, "", title, thumbnail, false)
             val recipeViewLinearLayout = binding.detailLinear
             val params = LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -58,9 +63,15 @@ class VideoDetailFragment : Fragment() {
             binding.detailContent.text = it.getString("content")
 
             binding.detailIsLike.setOnClickListener {
+
                 binding.detailIsLike.setImageResource(R.drawable.ic_heart_fill)
                 (mContext as MainActivity).addLikedItem(videoItems)
-                database.contactDao().update(MyPageEntity(null, thumbnail, title))
+
+                lifecycleScope.launch() {
+                    withContext(Dispatchers.IO) {
+                        database.contactDao().update(MyPageEntity(null, thumbnail, title))
+                    }
+                }
             }
         }
     }

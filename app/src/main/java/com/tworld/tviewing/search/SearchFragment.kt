@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.tviewing.R
 import com.example.tviewing.databinding.FragmentSearchBinding
+import com.tworld.tviewing.data.MyVideoItems
 import com.tworld.tviewing.search.data.SearchResponse
 import com.tworld.tviewing.videoDetail.DetailActivity
 import com.tworld.tviewing.videoDetail.VideoDetailFragment
@@ -26,7 +27,7 @@ class SearchFragment : Fragment() {
     private lateinit var adaptor: SearchAdaptor
     private lateinit var gridmanager: StaggeredGridLayoutManager
     private lateinit var mContext: Context
-    private var datalist: ArrayList<SearchResult> = ArrayList()
+    private var dataList: ArrayList<MyVideoItems> = ArrayList()
 
 
     override fun onAttach(context: Context) {
@@ -52,13 +53,16 @@ class SearchFragment : Fragment() {
         adaptor = SearchAdaptor(mContext)
         binding.search.adapter = adaptor
         binding.search.itemAnimator = null
-        adaptor.datalist = datalist
+        adaptor.datalist = dataList
         adaptor.notifyDataSetChanged()
         adaptor.itemClickListener = object : SearchAdaptor.OnItemClickListener {
             override fun onItemClick(position: Int) {
                 val bundle = Bundle()
                 val detailFragment = VideoDetailFragment()
-                bundle.putString("title", datalist[position].title)
+                bundle.putString("id", dataList[position].videoUri)
+                bundle.putString("title", dataList[position].title)
+                bundle.putString("thumbnail", dataList[position].thumbnail)
+                bundle.putString("content", dataList[position].content)
                 detailFragment.arguments = bundle
 
                 val fragmentManager = (view?.context as AppCompatActivity).supportFragmentManager
@@ -91,16 +95,18 @@ class SearchFragment : Fragment() {
                 response.body()?.pageInfo?.let { pageInfo ->
                     if (pageInfo.resultsPerPage.toInt() > 0) {
                         response.body()!!.items.forEach { items ->
+                            val id = items.id.videoId
                             val title = items.snippet.title
                             val url = items.snippet.thumbnails.medium.url
-                            datalist.add(SearchResult(title, url))
+                            val content = items.snippet.description
+                            dataList.add(MyVideoItems(id, title, url, content, false))
                         }
                     } else {
                         Toast.makeText(activity, "결과 값이 없습니다", Toast.LENGTH_SHORT).show()
                     }
 
                 }
-                adaptor.datalist = datalist
+                adaptor.datalist = dataList
                 adaptor.notifyDataSetChanged()
             }
 
