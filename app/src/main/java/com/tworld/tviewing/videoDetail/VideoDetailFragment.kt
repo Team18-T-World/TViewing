@@ -1,6 +1,7 @@
 package com.tworld.tviewing.videoDetail
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -62,6 +63,19 @@ class VideoDetailFragment : Fragment() {
             })
             binding.detailTitle.text = title
             binding.detailContent.text = it.getString("content")
+
+            binding.detailShare.setOnClickListener {
+                val sendIntent: Intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TEXT, "https://www.youtube.com/watch?v=${id}")
+                    type = "text/plain"
+                }
+
+                val shareIntent = Intent.createChooser(sendIntent, null)
+                startActivity(shareIntent)
+
+            }
+
             var isLike = false
             var myVideo = database.contactDao().getAll()
             var listSize = myVideo.value?.size?:0
