@@ -16,12 +16,15 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import com.tworld.tviewing.MainActivity
 import com.tworld.tviewing.data.MyVideoItems
+import com.tworld.tviewing.myVideo.MyPageDatabase
+import com.tworld.tviewing.myVideo.MyPageEntity
 
 class VideoDetailFragment : Fragment() {
 
     private val binding by lazy { FragmentVideoDetailBinding.inflate(layoutInflater) }
     private lateinit var mContext: Context
     private lateinit var videoItems: MyVideoItems
+    private lateinit var database: MyPageDatabase
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -31,9 +34,11 @@ class VideoDetailFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
+            database = MyPageDatabase.getInstance(requireContext())!!
             val id = it.getString("id") ?: ""
             val title = it.getString("title") ?: ""
-            videoItems = MyVideoItems(id, "", title, "", true)
+            val thumbnail = it.getString("thumbnail")?:""
+            videoItems = MyVideoItems(id, "", title, false)
             val recipeViewLinearLayout = binding.detailLinear
             val params = LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -52,6 +57,11 @@ class VideoDetailFragment : Fragment() {
             binding.detailTitle.text = title
             binding.detailContent.text = it.getString("content")
 
+            binding.detailIsLike.setOnClickListener {
+                binding.detailIsLike.setImageResource(R.drawable.ic_heart_fill)
+                (mContext as MainActivity).addLikedItem(videoItems)
+                database.contactDao().update(MyPageEntity(null, thumbnail, title))
+            }
         }
     }
 
@@ -59,11 +69,6 @@ class VideoDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding.detailIsLike.setOnClickListener {
-            binding.detailIsLike.setImageResource(R.drawable.ic_heart_fill)
-            (mContext as MainActivity).addLikedItem(videoItems)
-
-        }
         binding.detailBackBtn.setOnClickListener {
             Toast.makeText(requireContext(), "click", Toast.LENGTH_SHORT).show()
             val fragmentManager = requireActivity().supportFragmentManager
