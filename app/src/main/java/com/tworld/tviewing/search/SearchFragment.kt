@@ -1,7 +1,6 @@
 package com.tworld.tviewing.search
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,11 +9,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.tviewing.BuildConfig
 import com.example.tviewing.R
 import com.example.tviewing.databinding.FragmentSearchBinding
 import com.tworld.tviewing.data.MyVideoItems
 import com.tworld.tviewing.search.data.SearchResponse
-import com.tworld.tviewing.videoDetail.DetailActivity
 import com.tworld.tviewing.videoDetail.VideoDetailFragment
 import com.tworld.tviewing.youtube.RetrofitApi
 import retrofit2.Call
@@ -87,7 +86,7 @@ class SearchFragment : Fragment() {
     private fun fetchImageResults(keyWord: String) {
         val service = RetrofitApi.youtubeService
         service.getSearchService(
-            apiKey = "AIzaSyB-hi0gpZmfY5A0fv_wOVf_q6l1L0N5Jz4", q = keyWord
+            apiKey = BuildConfig.API_KEY, q = keyWord
         ).enqueue(object : retrofit2.Callback<SearchResponse> {
             override fun onResponse(
                 call: Call<SearchResponse>, response: Response<SearchResponse>
