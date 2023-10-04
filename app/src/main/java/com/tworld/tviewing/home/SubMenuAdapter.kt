@@ -42,20 +42,20 @@ class SubMenuAdapter :
     inner class SubMenuViewHolder(private val binding: SubMenuItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         init {
-            binding.cardView.setOnClickListener {
+            binding.subMenu.setOnClickListener {
 
                 val pos = adapterPosition
                 if (pos != RecyclerView.NO_POSITION && ::itemClickListener.isInitialized)
-                    itemClickListener.onItemClick(binding.cardView, pos)
+                    itemClickListener.onItemClick(binding.subMenu, pos)
             }
         }
 
         fun bind(item: MenuItem) {
-            binding.textView2.text = item.text
+            binding.subMenu.text = item.text
             if (item.isClicked) {
-                binding.textView2.setTextColor(Color.parseColor("#FFFFFF"))
+                binding.subMenu.setTextColor(Color.parseColor("#FFFFFF"))
             } else {
-                binding.textView2.setTextColor(Color.parseColor("#888787"))
+                binding.subMenu.setTextColor(Color.parseColor("#888787"))
             }
         }
     }

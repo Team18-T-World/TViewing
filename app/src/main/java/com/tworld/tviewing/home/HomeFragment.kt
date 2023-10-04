@@ -5,9 +5,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.tviewing.R
 import com.example.tviewing.databinding.FragmentHomeBinding
+import com.tworld.tviewing.videoDetail.VideoDetailFragment
 import com.tworld.tviewing.youtube.RetrofitApi
 import com.tworld.tviewing.youtube.YoutubeResponse
 import retrofit2.Call
@@ -15,13 +18,13 @@ import retrofit2.Response
 
 class HomeFragment : Fragment() {
 
+    private var videoList: ArrayList<VideoItems> = ArrayList()
+    private val adapter: HomeAdapter by lazy { HomeAdapter(videoList) }
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var mainMenuAdapter: MainMenuAdapter
     private lateinit var subMenuAdapter: SubMenuAdapter
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,9 +38,20 @@ class HomeFragment : Fragment() {
                     response: Response<YoutubeResponse>
                 ) {
                     if (response.isSuccessful) {
-                        response.body()?.items.let {
-                            //예제
-//                            binding.homeText.text = it!!.get(1).snippet.title
+                        response.body()?.items?.forEach { item ->
+                            val id = item.id
+                            val title = item.snippet.title
+                            val content = item.snippet.description
+                            val thumbnails = item.snippet.thumbnails.default.url
+                            videoList.add(
+                                VideoItems(
+                                    id,
+                                    thumbnails,
+                                    title,
+                                    content,
+                                    false
+                                )
+                            )
                         }
                     }
                 }
@@ -66,8 +80,8 @@ class HomeFragment : Fragment() {
                 MenuItem("카테고리")
             )
         )
-        binding.homeMainMenu.adapter = mainMenuAdapter
-        binding.homeMainMenu.layoutManager =
+        binding.homeMainMenuList.adapter = mainMenuAdapter
+        binding.homeMainMenuList.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         mainMenuAdapter.setOnItemclickListner { _, position -> //클릭한 메뉴의 isClicked를 true로 변경
@@ -123,10 +137,28 @@ class HomeFragment : Fragment() {
                     subMenuAdapter.subMenuList[i].isClicked = i == location
                     subMenuAdapter.notifyItemRangeChanged(0, subMenuAdapter.itemCount)
                 }
+                //서브 메뉴를 클릭할 때 홈 메뉴 동영상 출력
+                Log.d("###", videoList.toString())
+                binding.homeVideoList.adapter = adapter
             }
-            binding.homeSubMenu.adapter = subMenuAdapter
-            binding.homeSubMenu.layoutManager =
+            binding.homeVideoList.layoutManager =
+                LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            binding.homeSubMenuList.adapter = subMenuAdapter
+            binding.homeSubMenuList.layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        }
+        adapter.setOnItemclickListner { _, position ->
+            val bundle = Bundle()
+            val detailFragment = VideoDetailFragment()
+            bundle.putString("title", videoList[position].title)
+            bundle.putString("content", videoList[position].content)
+            detailFragment.arguments = bundle
+
+            val fragmentManager = (view?.context as AppCompatActivity).supportFragmentManager
+            fragmentManager.beginTransaction()
+                .replace(R.id.home_fragment, detailFragment)
+                .addToBackStack(null)
+                .commit()
         }
     }
 
