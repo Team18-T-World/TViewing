@@ -15,11 +15,11 @@ class MyPageAdapter(private val onClick: (MyPageEntity) -> Unit) :
 
         fun setBind(mypage: MyPageEntity) {
             mypage.let {
-                Glide.with(binding.thumnailImageView).load(it.thumbnail_text).override(600)
+                Glide.with(binding.thumnailImageView).load(it.thumbnail).override(600)
                     .into(binding.thumnailImageView)
 
 
-                binding.titleText.text = it.title_text
+                binding.titleText.text = it.title
 
                 binding.thumnailImageView.setOnClickListener {
                     onClick(mypage)
