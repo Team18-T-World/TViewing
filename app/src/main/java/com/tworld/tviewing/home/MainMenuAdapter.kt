@@ -26,20 +26,20 @@ class MainMenuAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
-            binding.cardView.setOnClickListener {
+            binding.mainMenu.setOnClickListener {
 
                 val pos = adapterPosition
                 if (pos != RecyclerView.NO_POSITION && ::itemClickListener.isInitialized)
-                    itemClickListener.onItemClick(binding.cardView, pos)
+                    itemClickListener.onItemClick(binding.mainMenu, pos)
             }
         }
 
         fun bind(item: MenuItem) {
-            binding.textView2.text = item.text
+            binding.mainMenu.text = item.text
             if (item.isClicked) {
-                binding.textView2.setTextColor(Color.parseColor("#FFFFFF"))
+                binding.mainMenu.setTextColor(Color.parseColor("#FFFFFF"))
             } else {
-                binding.textView2.setTextColor(Color.parseColor("#888787"))
+                binding.mainMenu.setTextColor(Color.parseColor("#888787"))
             }
         }
     }
