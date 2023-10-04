@@ -38,7 +38,7 @@ class VideoDetailFragment : Fragment() {
             val id = it.getString("id") ?: ""
             val title = it.getString("title") ?: ""
             val thumbnail = it.getString("thumbnail")?:""
-            videoItems = MyVideoItems(id, "", title, false)
+            videoItems = MyVideoItems(id, "", title, thumbnail, false)
             val recipeViewLinearLayout = binding.detailLinear
             val params = LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -60,7 +60,7 @@ class VideoDetailFragment : Fragment() {
             binding.detailIsLike.setOnClickListener {
                 binding.detailIsLike.setImageResource(R.drawable.ic_heart_fill)
                 (mContext as MainActivity).addLikedItem(videoItems)
-                database.contactDao().update(MyPageEntity(null, thumbnail, title))
+                // database.contactDao().update(MyPageEntity(null, thumbnail, title))
             }
         }
     }

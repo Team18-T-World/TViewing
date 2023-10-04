@@ -7,11 +7,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.tviewing.databinding.SearchItemBinding
+import com.tworld.tviewing.data.MyVideoItems
 
 
 class SearchAdaptor(private val mContext: Context) : RecyclerView.Adapter<SearchAdaptor.Holder>() {
 
-    var datalist = ArrayList<SearchResult>()
+    var datalist = ArrayList<MyVideoItems>()
 
     interface OnItemClickListener {
         fun onItemClick(position: Int)
@@ -41,7 +42,7 @@ class SearchAdaptor(private val mContext: Context) : RecyclerView.Adapter<Search
         }
 
         Glide.with(mContext) // mContext??
-            .load(data.url) // 불러올 이미지 url
+            .load(data.thumbnail) // 불러올 이미지 url
             .into(holder.image) // 이미지를 넣을 뷰
 
         holder.title.text = data.title // 타이틀 텍스트 넣기
