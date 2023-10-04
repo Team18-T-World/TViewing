@@ -5,9 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.tviewing.R
 import com.example.tviewing.databinding.ActivityDetailBinding
+import com.example.tviewing.databinding.FragmentVideoDetailBinding
 
 class DetailActivity : AppCompatActivity() {
-    private val binding by lazy { ActivityDetailBinding.inflate(layoutInflater) }
+    private val binding by lazy { FragmentVideoDetailBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)

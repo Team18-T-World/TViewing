@@ -7,11 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.tviewing.R
 import com.example.tviewing.databinding.FragmentSearchBinding
 import com.tworld.tviewing.search.data.SearchResponse
 import com.tworld.tviewing.videoDetail.DetailActivity
+import com.tworld.tviewing.videoDetail.VideoDetailFragment
 import com.tworld.tviewing.youtube.RetrofitApi
 import retrofit2.Call
 import retrofit2.Response
@@ -53,10 +56,16 @@ class SearchFragment : Fragment() {
         adaptor.notifyDataSetChanged()
         adaptor.itemClickListener = object : SearchAdaptor.OnItemClickListener {
             override fun onItemClick(position: Int) {
-                val intent = Intent(context, DetailActivity::class.java)
-                intent.putExtra("url", datalist[position].url)
-                intent.putExtra("title", datalist[position].title)
-                context?.startActivity(intent)
+                val bundle = Bundle()
+                val detailFragment = VideoDetailFragment()
+                bundle.putString("title", datalist[position].title)
+                detailFragment.arguments = bundle
+
+                val fragmentManager = (view?.context as AppCompatActivity).supportFragmentManager
+                fragmentManager.beginTransaction()
+                    .replace(R.id.search_frame, detailFragment)
+                    .addToBackStack(null)
+                    .commit()
             }
         }
     }
@@ -74,7 +83,7 @@ class SearchFragment : Fragment() {
     private fun fetchImageResults(keyWord: String) {
         val service = RetrofitApi.youtubeService
         service.getSearchService(
-            apiKey = "your-api-key", q = keyWord
+            apiKey = "AIzaSyB-hi0gpZmfY5A0fv_wOVf_q6l1L0N5Jz4", q = keyWord
         ).enqueue(object : retrofit2.Callback<SearchResponse> {
             override fun onResponse(
                 call: Call<SearchResponse>, response: Response<SearchResponse>

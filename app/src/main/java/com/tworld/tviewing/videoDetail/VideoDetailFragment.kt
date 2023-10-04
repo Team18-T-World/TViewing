@@ -1,60 +1,92 @@
 package com.tworld.tviewing.videoDetail
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.example.tviewing.R
+import com.example.tviewing.databinding.FragmentVideoDetailBinding
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+import com.tworld.tviewing.MainActivity
+import com.tworld.tviewing.data.MyVideoItems
+import com.tworld.tviewing.myVideo.MyPageDatabase
+import com.tworld.tviewing.myVideo.MyPageEntity
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [VideoDetailFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class VideoDetailFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private val binding by lazy { FragmentVideoDetailBinding.inflate(layoutInflater) }
+    private lateinit var mContext: Context
+    private lateinit var videoItems: MyVideoItems
+    private lateinit var database: MyPageDatabase
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mContext = context
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            database = MyPageDatabase.getInstance(requireContext())!!
+            val id = it.getString("id") ?: ""
+            val title = it.getString("title") ?: ""
+            val thumbnail = it.getString("thumbnail")?:""
+            videoItems = MyVideoItems(id, "", title, false)
+            val recipeViewLinearLayout = binding.detailLinear
+            val params = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            params.bottomMargin = 30
+            val ypv = YouTubePlayerView(requireContext())
+            ypv.layoutParams = params
+            recipeViewLinearLayout.addView(ypv)
+            lifecycle.addObserver(ypv)
+            ypv.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+                override fun onReady(youTubePlayer: YouTubePlayer) {
+                    youTubePlayer.loadVideo(id, 0f)
+                }
+            })
+            binding.detailTitle.text = title
+            binding.detailContent.text = it.getString("content")
+
+            binding.detailIsLike.setOnClickListener {
+                binding.detailIsLike.setImageResource(R.drawable.ic_heart_fill)
+                (mContext as MainActivity).addLikedItem(videoItems)
+                database.contactDao().update(MyPageEntity(null, thumbnail, title))
+            }
         }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_video_detail, container, false)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment VideoDetailFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            VideoDetailFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    ): View {
+        binding.detailBackBtn.setOnClickListener {
+            Toast.makeText(requireContext(), "click", Toast.LENGTH_SHORT).show()
+            val fragmentManager = requireActivity().supportFragmentManager
+            val mFragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+            mFragmentTransaction.run {
+                setCustomAnimations(
+                    R.anim.transition_fade_in,
+                    R.anim.transition_fade_out,
+                    R.anim.transition_fade_in,
+                    R.anim.transition_fade_out
+                )
+                addToBackStack(fragmentManager.backStackEntryCount.toString())
             }
+            mFragmentTransaction.remove(this)
+            mFragmentTransaction.commit()
+            this.onDestroy()
+            this.onDetach()
+        }
+        return binding.root
     }
 }
