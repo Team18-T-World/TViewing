@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
         val tabLayout = binding.mainTabLayout
         val viewPager = binding.frameLayout
-
+        viewPager.isUserInputEnabled = false
         // adapter 준비 및 연결
         val adapter = TabPagerAdapter(this)
         viewPager.adapter = adapter
