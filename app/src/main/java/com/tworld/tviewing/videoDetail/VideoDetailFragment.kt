@@ -2,6 +2,7 @@ package com.tworld.tviewing.videoDetail
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -61,15 +62,27 @@ class VideoDetailFragment : Fragment() {
             })
             binding.detailTitle.text = title
             binding.detailContent.text = it.getString("content")
+            var isLike = false
+            var myVideo = database.contactDao().getAll()
+            var listSize = myVideo.value?.size?:0
 
             binding.detailIsLike.setOnClickListener {
-
-                binding.detailIsLike.setImageResource(R.drawable.ic_heart_fill)
-                (mContext as MainActivity).addLikedItem(videoItems)
-
-                lifecycleScope.launch() {
-                    withContext(Dispatchers.IO) {
-                        database.contactDao().update(MyPageEntity(null, thumbnail, title))
+                if(isLike){
+                    binding.detailIsLike.setImageResource(R.drawable.ic_heart)
+                    isLike = false
+                    lifecycleScope.launch() {
+                        withContext(Dispatchers.IO) {
+                            //database.contactDao().delete()
+                        }
+                    }
+                }else{
+                    binding.detailIsLike.setImageResource(R.drawable.ic_heart_fill)
+                    isLike = true
+                    //(mContext as MainActivity).addLikedItem(videoItems)
+                    lifecycleScope.launch() {
+                        withContext(Dispatchers.IO) {
+                            database.contactDao().update(MyPageEntity((listSize + 1).toLong(), thumbnail, title))
+                        }
                     }
                 }
             }
