@@ -28,7 +28,7 @@
                 android:id="@+id/profilePhoto_circleIv"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:src="@drawable/ic_launcher_background"
+                android:src="@drawable/tworld"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/background_view"
@@ -43,6 +43,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/profilePhoto_circleIv"
                 app:layout_constraintBottom_toBottomOf="parent"
+
 
                 />
 
