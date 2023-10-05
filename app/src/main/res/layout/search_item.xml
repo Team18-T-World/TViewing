@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    android:layout_margin="@dimen/row_margin"
     android:id="@+id/search_Item"
     android:focusable="true"
     android:clickable="true"
-    android:background="#6B6B6B">
+    android:background="@color/background_sub">
 
 
     <ImageView
         android:id="@+id/img_Thumbnail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="2dp"
+        android:layout_margin="@dimen/row_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -30,10 +30,9 @@
         android:id="@+id/text_Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:text="제목"
+        android:layout_margin="@dimen/row_margin"
         android:maxLines="1"
-        android:textColor="#DCDDDC"
+        android:textColor="@color/text_color"
         tools:layout_editor_absoluteX="40dp"
         tools:layout_editor_absoluteY="16dp"
         app:layout_constraintStart_toStartOf="parent"

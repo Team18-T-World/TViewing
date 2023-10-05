@@ -1,4 +1,4 @@
-package com.example.yourmediaapp_18.myVideo
+package com.tworld.tviewing.myVideo
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,9 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.tviewing.databinding.FragmentMyVideoBinding
-import com.tworld.tviewing.myVideo.MyPageAdapter
-import com.tworld.tviewing.myVideo.MyPageEntity
-import com.tworld.tviewing.myVideo.MyPageViewModel
 
 
 class MyVideoFragment : Fragment() {
