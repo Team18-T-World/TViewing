@@ -39,6 +39,7 @@ class HomeAdapter(val dataList: MutableList<MyVideoItems>) :
             bundle.putString("title", dataList[position].title)
             bundle.putString("content", dataList[position].content)
             bundle.putString("uri", dataList[position].videoUri)
+            bundle.putString("thumbnail", dataList[position].thumbnail) // 버그 수정한 부분, 홈에서누른거->디테일페이지->북마크 하면 썸네일이 안들어갔음
             detailFragment.arguments = bundle
 
             val fragmentManager = (it.context as AppCompatActivity).supportFragmentManager
