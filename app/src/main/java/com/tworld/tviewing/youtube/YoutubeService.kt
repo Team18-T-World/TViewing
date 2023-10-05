@@ -12,6 +12,7 @@ interface YoutubeService {
         @Query("chart") chart: String = "mostPopular",
         @Query("maxResults") maxResults: Int = 10,
         @Query("regionCode") regionCode: String = "kr",
+        @Query("videoCategoryId") videoCategoryId: String,
         @Query("key") apiKey: String
     ): Call<YoutubeResponse>
 

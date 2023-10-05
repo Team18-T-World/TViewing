@@ -33,7 +33,6 @@ class HomeAdapter(val dataList: MutableList<MyVideoItems>) :
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.itemView.setOnClickListener {
-            itemClick?.onClick(it, position)
             val bundle = Bundle()
             val detailFragment = VideoDetailFragment()
             bundle.putString("id", dataList[position].videoUri)

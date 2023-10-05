@@ -5,7 +5,7 @@
     android:id="@+id/testpage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#111111"
+    android:background="@color/background"
     tools:context="com.tworld.tviewing.search.SearchFragment">
     <FrameLayout
         android:id="@+id/search_frame"
@@ -18,9 +18,9 @@
                 android:id="@+id/layout_Search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#111111"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
+                android:background="@color/background"
+                android:paddingTop="@dimen/row_margin"
+                android:paddingBottom="@dimen/row_margin"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -30,15 +30,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_toLeftOf="@+id/tv_search"
-                    android:background="#6b6b6b"
-                    android:hint="검색어를 입력해주세요."
-                    android:paddingLeft="10dp"
+                    android:layout_marginLeft="@dimen/row_margin"
+                    android:layout_marginRight="@dimen/row_margin"
+                    android:layout_toStartOf="@+id/tv_search"
+                    android:background="@color/background_sub"
+                    android:hint="@string/search_hint"
+                    android:paddingStart="@dimen/row_margin"
                     android:textColor="@color/black"
-                    android:textColorHint="#dcdddc"
-                    android:textSize="16sp">
+                    android:textColorHint="@color/text_color"
+                    android:textSize="@dimen/title_text">
 
                 </EditText>
 
@@ -46,20 +46,18 @@
                     android:id="@+id/tv_search"
                     android:layout_width="80dp"
                     android:layout_height="40dp"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="16dp"
-                    android:background="#6b6b6b"
+                    android:layout_marginEnd="@dimen/row_margin"
+                    android:background="@color/background_sub"
                     android:clickable="true"
                     android:focusable="true"
                     android:gravity="center"
-                    android:paddingLeft="15dp"
-                    android:paddingTop="5dp"
-                    android:paddingRight="15dp"
-                    android:paddingBottom="5dp"
-                    android:text="검색"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
+                    android:paddingHorizontal="@dimen/row_top_margin"
+                    android:paddingVertical="@dimen/row_margin"
+                    android:text="@string/search"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/title_text"
                     android:textStyle="bold" />
             </RelativeLayout>
 
@@ -67,7 +65,7 @@
                 android:id="@+id/search"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/row_margin"
                 android:scrollbars="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

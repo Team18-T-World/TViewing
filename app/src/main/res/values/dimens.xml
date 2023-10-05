@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="row_margin">5dp</dimen>
+    <dimen name="drawer_width">240dp</dimen>
+    <dimen name="drawer_text">20sp</dimen>
+    <dimen name="title_text">18sp</dimen>
+    <dimen name="text_size">8sp</dimen>
+    <dimen name="ic_big">50dp</dimen>
+    <dimen name="ic_small">30dp</dimen>
+    <dimen name="row_top_margin">15dp</dimen>
+    <dimen name="row_left_margin">5dp</dimen>
+    <dimen name="row_right_margin">5dp</dimen>
+    <dimen name="row_bottom_margin">15dp</dimen>
+    <dimen name="layout_marginHorizontal">20dp</dimen>
+    <dimen name="line">2dp</dimen>
+</resources>

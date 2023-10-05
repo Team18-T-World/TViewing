@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".myVideo.MyVideoFragment">
+    tools:context="com.tworld.tviewing.myVideo.MyVideoFragment">
 
 
     <ScrollView
@@ -13,13 +13,13 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <View
                 android:id="@+id/background_view"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
-                android:background="#111111"
+                android:background="@color/background"
                 app:layout_constraintTop_toTopOf="parent"
 
                 />

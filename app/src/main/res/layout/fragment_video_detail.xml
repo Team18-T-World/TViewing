@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#656565"
+    android:background="@color/background_sub"
     tools:context="com.tworld.tviewing.videoDetail.VideoDetailFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,10 +22,10 @@
 
         <ImageButton
             android:id="@+id/detail_back_btn"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/ic_big"
+            android:layout_height="@dimen/ic_big"
             android:background="@android:color/transparent"
-            android:padding="10dp"
+            android:padding="@dimen/row_margin"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_back"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
-            android:padding="10dp"
+            android:padding="@dimen/row_margin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -49,12 +49,10 @@
 
                 <TextView
                     android:id="@+id/detail_title"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="8"
-                    android:text="Title"
-                    android:textColor="#DCDDDC"
-                    android:textSize="30sp"/>
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/title_text"/>
             </LinearLayout>
 
 
@@ -71,85 +69,66 @@
 
                     <ImageButton
                         android:id="@+id/detail_isLike"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_margin="5dp"
+                        android:layout_width="@dimen/ic_small"
+                        android:layout_height="@dimen/ic_small"
+                        android:layout_margin="@dimen/row_margin"
                         android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
                         android:src="@drawable/ic_heart"
-                        app:tint="#DCDDDC" />
+                        app:tint="@color/text_color" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="찜"
-                        android:textColor="#DCDDDC" />
+                        android:text="@string/isLike"
+                        android:textSize="@dimen/title_text"
+                        android:textColor="@color/text_color" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="30dp"
-                    android:orientation="vertical">
-
-                    <ImageButton
-                        android:id="@+id/detail_notify"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_margin="5dp"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/ic_bell"
-                        app:tint="#DCDDDC" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="구독"
-                        android:textColor="#DCDDDC" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/layout_marginHorizontal"
                     android:orientation="vertical">
 
                     <ImageButton
                         android:id="@+id/detail_share"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_margin="5dp"
+                        android:layout_width="@dimen/ic_small"
+                        android:layout_height="@dimen/ic_small"
+                        android:layout_margin="@dimen/row_margin"
                         android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
                         android:src="@drawable/ic_share"
-                        app:tint="#DCDDDC" />
+                        app:tint="@color/text_color" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="공유"
-                        android:textColor="#DCDDDC" />
+                        android:text="@string/share"
+                        android:textColor="@color/text_color" />
                 </LinearLayout>
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginVertical="10dp"
-                android:background="#DCDDDC" />
+                android:layout_height="@dimen/line"
+                android:layout_marginVertical="@dimen/row_margin"
+                android:background="@color/text_color" />
 
-            <TextView
-                android:id="@+id/detail_content"
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="content"
-                android:scrollbarAlwaysDrawVerticalTrack="true"
-                android:scrollbarSize="2dp"
-                android:scrollbars="vertical"
-                android:textColor="#DCDDDC" />
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/detail_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbarAlwaysDrawVerticalTrack="true"
+                    android:scrollbarSize="@dimen/line"
+                    android:scrollbars="vertical"
+                    android:textColor="@color/text_color" />
+            </ScrollView>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

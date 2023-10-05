@@ -41,7 +41,7 @@ class HomeFragment : Fragment() {
     ): View {
         Log.d("TAG", "HomeFragment")
         val service = RetrofitApi.youtubeService
-        service.getYoutubeVideo(apiKey = BuildConfig.API_KEY)
+        service.getYoutubeVideo(apiKey = BuildConfig.API_KEY, videoCategoryId = "24")
             .enqueue(object : retrofit2.Callback<YoutubeResponse> {
                 override fun onResponse(
                     call: Call<YoutubeResponse>,
@@ -59,8 +59,8 @@ class HomeFragment : Fragment() {
                     }
 
                     val adapter = HomeAdapter(videoList)
-                    binding.homeRecyclerView.adapter = adapter
-                    binding.homeRecyclerView.layoutManager = LinearLayoutManager(
+                    binding.homeRecyclerView24.adapter = adapter
+                    binding.homeRecyclerView24.layoutManager = LinearLayoutManager(
                         requireContext(),
                         LinearLayoutManager.HORIZONTAL,
                         true
@@ -72,6 +72,77 @@ class HomeFragment : Fragment() {
                     Log.d("TAG", t.message.toString())
                 }
             })
+
+        var gameList: ArrayList<MyVideoItems> = ArrayList()
+
+        service.getYoutubeVideo(apiKey = BuildConfig.API_KEY, videoCategoryId = "20")
+            .enqueue(object : retrofit2.Callback<YoutubeResponse> {
+                override fun onResponse(
+                    call: Call<YoutubeResponse>,
+                    response: Response<YoutubeResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        response.body()?.items?.forEach { item ->
+                            val id = item.id
+                            val title = item.snippet.title
+                            val content = item.snippet.description
+                            val thumbnails = item.snippet.thumbnails.default.url
+                            gameList.add(MyVideoItems(id, title, thumbnails, content, false)
+                            )
+                        }
+                    }
+
+                    val adapter = HomeAdapter(gameList)
+                    binding.homeRecyclerView20.adapter = adapter
+                    binding.homeRecyclerView20.layoutManager = LinearLayoutManager(
+                        requireContext(),
+                        LinearLayoutManager.HORIZONTAL,
+                        true
+                    )
+
+                }
+
+                override fun onFailure(call: Call<YoutubeResponse>, t: Throwable) {
+                    Log.d("TAG", t.message.toString())
+                }
+            })
+
+        var newsList: ArrayList<MyVideoItems> = ArrayList()
+
+        service.getYoutubeVideo(apiKey = BuildConfig.API_KEY, videoCategoryId = "25")
+            .enqueue(object : retrofit2.Callback<YoutubeResponse> {
+                override fun onResponse(
+                    call: Call<YoutubeResponse>,
+                    response: Response<YoutubeResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        response.body()?.items?.forEach { item ->
+                            val id = item.id
+                            val title = item.snippet.title
+                            val content = item.snippet.description
+                            val thumbnails = item.snippet.thumbnails.default.url
+                            newsList.add(MyVideoItems(id, title, thumbnails, content, false)
+                            )
+                        }
+                    }
+
+                    val adapter = HomeAdapter(newsList)
+                    binding.homeRecyclerView25.adapter = adapter
+                    binding.homeRecyclerView25.layoutManager = LinearLayoutManager(
+                        requireContext(),
+                        LinearLayoutManager.HORIZONTAL,
+                        true
+                    )
+
+                }
+
+                override fun onFailure(call: Call<YoutubeResponse>, t: Throwable) {
+                    Log.d("TAG", t.message.toString())
+                }
+            })
+
+
+
 
         return binding.root
     }
