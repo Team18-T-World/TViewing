@@ -4,7 +4,7 @@ import java.util.Properties
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -20,6 +20,7 @@ android {
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "API_KEY", localProperties.getProperty("apikey"))
 
@@ -43,7 +44,6 @@ android {
     }
     buildFeatures {
         viewBinding = true
-        buildConfig = true
     }
 }
 
@@ -67,14 +67,14 @@ dependencies {
     // viewmodel, livedata
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
-    implementation ("androidx.activity:activity-ktx:1.3.1") //by viewModels() // SdkVersion 30 사용으로 인한 1.3.1
+    implementation("androidx.activity:activity-ktx:1.3.1") //by viewModels() // SdkVersion 30 사용으로 인한 1.3.1
 
     //Room
     val room_version = "2.5.2"
     implementation("androidx.room:room-runtime:$room_version")
     annotationProcessor("androidx.room:room-compiler:$room_version")
     // To use Kotlin annotation processing tool (kapt)
-    kapt("androidx.room:room-compiler:$room_version")
+    ksp("androidx.room:room-compiler:$room_version")
     implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0") //youtubeplayer
     implementation("com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender:0.28")
 
