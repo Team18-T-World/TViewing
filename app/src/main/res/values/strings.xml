@@ -8,5 +8,7 @@
     <string name="isLike">찜</string>
     <string name="share">공유</string>
     <string name="search_hint">검색어를 입력해주세요.</string>
-    <string name="popular_video">Popular Video</string>
+    <string name="popular_video_game">Popular Video : Game</string>
+    <string name="popular_video_entertainment">Popular Video : Entertainment</string>
+    <string name="popular_video_news">Popular Video : News</string>
 </resources>
