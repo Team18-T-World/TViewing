@@ -8,11 +8,9 @@
 3. 개발 기간
 4. 주요 기능
 5. 팀원 및 역할 분담
-6. 프로젝트 설치 및 실행 방법
-7. 프로젝트 사용 방법
-8. 참고 자료 / 외부 리소스 정보
-9. 팀 노션 주소
-10. 라이센스
+6. 참고 자료 / 외부 리소스 정보
+7. 팀 노션 주소
+8. 라이센스
 
 
 ## 🎀 프로젝트 명
@@ -30,7 +28,10 @@ Youtube API를 활용하여 좋아하는 동영상을 저장할 수 있는 앱
 
 
 ## ⚙️ 주요 기능
-
+가장 인기있는 비디오 보여주기
+비디오 서치 기능
+비디오 정보 보기
+좋아하는 비디오 저장
 
 ## 🎉 팀원 및 역할 분담
 <table>
@@ -45,22 +46,17 @@ Youtube API를 활용하여 좋아하는 동영상을 저장할 수 있는 앱
 </table>
 
 1. 이슬비
-   - VideoDetailFragment
+   - VideoDetailFragment, HomeFragment, Readme
 2. 윤승재
    - HomeFragment
 3. 양윤혁
-   - SearchFragment
+   - SearchFragment, 시연 동영상 촬영
 4. 전지성
-   - MyVideoFragment
-
-
-## 🏳️ 프로젝트 설치 및 실행 방법
-
-
-## 🚲 프로젝트 사용 방법
+   - MyVideoFragment, 발표
 
 
 ## ♻️ 참고 자료 / 외부 리소스 정보
+https://www.flaticon.com/
 
 
 ## 📖 팀 노션
