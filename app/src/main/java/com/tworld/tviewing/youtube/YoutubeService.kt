@@ -15,16 +15,6 @@ interface YoutubeService {
         @Query("key") apiKey: String
     ): Call<YoutubeResponse>
 
-    @GET("videos")
-    fun getYoutubeVideoByCategory(
-        @Query("part") part: String = "snippet",
-        @Query("chart") chart: String = "mostPopular",
-        @Query("maxResults") maxResults: Int = 10,
-        @Query("regionCode") regionCode: String = "kr",
-        @Query("categoryId") categoryId: String,
-        @Query("key") apiKey: String
-    ): Call<YoutubeResponse>
-
 
     @GET("search")
     fun getSearchService(
