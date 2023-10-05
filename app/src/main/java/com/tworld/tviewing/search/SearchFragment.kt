@@ -48,7 +48,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun setupView() {
-        gridmanager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
+        gridmanager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         binding.search.layoutManager = gridmanager
         adaptor = SearchAdaptor(mContext)
         binding.search.adapter = adaptor

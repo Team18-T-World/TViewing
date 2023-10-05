@@ -1,5 +1,6 @@
 package com.tworld.tviewing.myVideo
 
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +21,13 @@ class MyPageAdapter(private val onClick: (MyPageEntity) -> Unit) :
 
 
                 binding.titleText.text = it.title
+
+                binding.titleText.apply {
+                    setSingleLine()
+                    marqueeRepeatLimit = -1
+                    ellipsize = TextUtils.TruncateAt.MARQUEE
+                    isSelected = true
+                }
 
                 binding.thumnailImageView.setOnClickListener {
                     onClick(mypage)

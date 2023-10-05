@@ -5,14 +5,26 @@
     android:layout_height="wrap_content"
     android:layout_margin="15dp">
 
-    <ImageView
-        android:id="@+id/thumnail_imageView"
-        android:layout_width="180dp"
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/thumnail_imageView1"
+        android:layout_width="170dp"
         android:layout_height="252dp"
-        android:background="@drawable/ic_launcher_background"
-        android:scaleType="centerCrop"
+        app:cardCornerRadius="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+            android:id="@+id/thumnail_imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/ic_launcher_background"
+            android:scaleType="centerCrop"
+             />
+
+
+
+    </androidx.cardview.widget.CardView>
+
 
     <TextView
         android:id="@+id/title_text"
@@ -20,9 +32,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="마이페이지 아이템입니다 testtest"
-        app:layout_constraintEnd_toEndOf="@+id/thumnail_imageView"
-        app:layout_constraintStart_toStartOf="@id/thumnail_imageView"
-        app:layout_constraintTop_toBottomOf="@id/thumnail_imageView"
+
+        android:textColor="@color/text_color"
+
+        app:layout_constraintEnd_toEndOf="@+id/thumnail_imageView1"
+        app:layout_constraintStart_toStartOf="@id/thumnail_imageView1"
+        app:layout_constraintTop_toBottomOf="@id/thumnail_imageView1"
 
         />
 
