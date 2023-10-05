@@ -5,10 +5,10 @@
     <string name="home">Home</string>
     <string name="search">검색</string>
     <string name="my_video">My Video</string>
-    <string name="isLike">찜</string>
+    <string name="isLike">북마크</string>
     <string name="share">공유</string>
     <string name="search_hint">검색어를 입력해주세요.</string>
-    <string name="popular_video_game">Popular Video : Game</string>
+    <string name="popular_video_game">인기 영상 : Game</string>
     <string name="popular_video_entertainment">Popular Video : Entertainment</string>
-    <string name="popular_video_news">Popular Video : News</string>
+    <string name="popular_video_news">인기 영상 : News</string>
 </resources>
